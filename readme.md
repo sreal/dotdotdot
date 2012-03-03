@@ -4,11 +4,25 @@
 
 ###On Login:
 
---> /.bash_profile
--->    --> /.profile
--->    -->    --> /.bash/ENV/.profile (if avaliable for platform)
--->    --> /.bashrc
--->    -->    --> /.bash/ENV/.bashrc  (if provided for platform)
+1. /.bash_profile 
+
+2. /.profile
+
+3. /.bash/ENV/.profile (if avaliable for platform)
+
+4. /.bashrc
+
+5. /.bash/ENV/.bashrc  (if provided for platform)
+
+
+
+### Terminal Opened
+
+1. /.bashrc
+
+2. /.bash/ENV/.bashrc  (if provided for platform)
+
+
 
 ##Help
 
