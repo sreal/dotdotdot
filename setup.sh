@@ -10,7 +10,7 @@ platform=$(uname)
 home="$HOME/"
 backupdir=$HOME"/backup/"
 dirlist=".bash"
-filelist=".bash_profile .bashrc .profile"
+filelist=".bash_profile .bashrc .profile .gitconfig"
 
 
 ## ## ## ## ## ## 
