@@ -2,7 +2,7 @@
 
 ##Usage 
 ```
-./setup.sh
+bash ./setup.sh
 ```
 
 
