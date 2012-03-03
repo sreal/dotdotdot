@@ -1,5 +1,12 @@
 #dotdotdot
 
+##Usage 
+```
+./setup.sh
+```
+
+
+
 ##Load order
 
 ###On Login:

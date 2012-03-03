@@ -3,10 +3,12 @@
 # Load the global .profile
 # Then the specific platform
 
-
 ## ## ## ## ## ## ## ##
 # GLOBAL CONFIGURATION (across boxes) 
 # 
+#echo "Global configuration loaded (~/.profile)"
+
+
 
 
 
@@ -14,16 +16,19 @@
 ## ## ## ## ## ## ## ##
 # SOURCE PLATFORM SPECIFIC 
 # Get the platform's .bashrc source
-platform = $(uname)
+platform=$(uname)
+
 if   [[ "$platform" == 'Linux' ]]; then
-    file="~/.bash/linux/.profile"
+    file="$HOME/.bash/linux/.profile"
 elif [[ "$platform" == 'MIGW32_NT-6.1' ]]; then
-    file="~/.bash/windows/.profile"
+    file="$HOME/.bash/windows/.profile"
 elif [[ "$platform" == 'Darwin' ]]; then
-    file="~/.bash/osx/.profile"
+    file="$HOME/.bash/osx/.profile"
 fi
-if [[ -e $(file) ]] ; then 
-    source $(file)
+
+if [[ -e $file ]] ; then
+    source $file
+#    echo "Custom configuration loaded ($file)"
 else
-    #echo "File Not Found ($(file))
+#    echo "Custom configuration not found ($file)"
 fi
