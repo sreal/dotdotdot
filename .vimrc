@@ -73,7 +73,7 @@ set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 "highlight current line
-set cul                                           
+"set cul                                           
 "adjust color
 hi CursorLine term=none cterm=none ctermbg=3      
 

@@ -42,3 +42,13 @@ bash ./setup.sh
 /.bash/ENV/.profile - source from /.profile
 
 /.bash/ENV/.bashrc - source from /.bashrc
+
+##Assumptions
+### Existing directories and files
+
+~/backup
+
+~/.vim/backup
+
+~/.vim/tmp
+
