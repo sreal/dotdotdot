@@ -6,7 +6,7 @@
 ## ## ## ## ## ## ## ##
 # GLOBAL CONFIGURATION (across boxes) 
 # 
-#echo "Global configuration loaded (~/.bashrc)"
+echo "Global configuration loaded (~/.bashrc)"
 
 
 #-------------------------------------------------------------
@@ -19,50 +19,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 #-------------------------------------------------------------
-# Shell Prompt
-#-------------------------------------------------------------
-if [[ "${DISPLAY%%:0*}" != "" ]]; then  
-    HILIT=${red}   # remote machine: prompt will be partly red
-else
-    HILIT=${cyan}  # local machine: prompt will be partly cyan
-fi
-#  --> Replace instances of \W with \w in prompt functions below
-#+ --> to get display of full path name.
-function fastprompt()
-{
-    unset PROMPT_COMMAND
-    case $TERM in
-        *term | rxvt )
-            PS1="${HILIT}[\h]$NC \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
-        linux )
-            PS1="${HILIT}[\h]$NC \W > " ;;
-        *)
-            PS1="[\h] \W > " ;;
-    esac
-}
-_powerprompt()
-{
-    LOAD=$(uptime|sed -e "s/.*: \([^,]*\).*/\1/" -e "s/ //g")
-}
-function powerprompt()
-{
-    PROMPT_COMMAND=_powerprompt
-    case $TERM in
-        *term | rxvt  )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > \
-                 \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
-        linux )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > " ;;
-        * )
-            PS1="[\A - \$LOAD]\n[\u@\h \#] \W > " ;;
-    esac
-}
-powerprompt     # This is the default prompt -- might be slow.
-                # If too slow, use fastprompt instead. ...
-#-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
-alias ll="ls -l --group-directories-first"
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias l='ls -AlXB'           # show hidden files
 alias la='ls -Al'          # show hidden files
@@ -96,7 +54,7 @@ alias egrep='egrep --color=auto'
 platform=$(uname)
 if   [[ "$platform" == 'Linux' ]]; then
     file="$HOME/.bash/linux/.bashrc"
-elif [[ "$platform" == 'MIGW32_NT-6.1' ]]; then
+elif [[ "$platform" == 'MINGW32_NT-6.1' ]]; then
     file="$HOME/.bash/windows/.bashrc"
 elif [[ "$platform" == 'Darwin' ]]; then
     file="$HOME/.bash/osx/.bashrc"
@@ -104,8 +62,8 @@ fi
 echo $file
 if [[ -e $file ]] ; then 
 	source $file
-#	echo "Custom configuration loaded ($file)"
+	echo "Custom configuration loaded ($file)"
 else
 	cat $file
-#    echo "Custom configuration not found ($file)"
+    echo "Custom configuration not found ($file)"
 fi

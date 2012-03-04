@@ -29,6 +29,4 @@ fi
 if [[ -e $file ]] ; then
     source $file
 #    echo "Custom configuration loaded ($file)"
-else
-#    echo "Custom configuration not found ($file)"
 fi
