@@ -60,9 +60,9 @@ alias lt='ls -ltr'         # sort by date, most recent last
 alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
--#-------------------------------------------------------------
--# The 'grep' family
--#-------------------------------------------------------------
+#-------------------------------------------------------------
+# The 'grep' family
+#-------------------------------------------------------------
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
