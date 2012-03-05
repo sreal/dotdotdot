@@ -2,25 +2,18 @@
 #
 # Custom configuration for linux boxes
 
-
 # All taken from 
 #http://tldp.org/LDP/abs/html/sample-bashrc.html
-
-
 #-------------------------------------------------------------
 # Shell Prompt
 #-------------------------------------------------------------
-
-
 if [[ "${DISPLAY%%:0*}" != "" ]]; then  
     HILIT=${red}   # remote machine: prompt will be partly red
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
 fi
-
 #  --> Replace instances of \W with \w in prompt functions below
 #+ --> to get display of full path name.
-
 function fastprompt()
 {
     unset PROMPT_COMMAND
@@ -33,16 +26,12 @@ function fastprompt()
             PS1="[\h] \W > " ;;
     esac
 }
-
-
 _powerprompt()
 {
     LOAD=$(uptime|sed -e "s/.*: \([^,]*\).*/\1/" -e "s/ //g")
 }
-
 function powerprompt()
 {
-
     PROMPT_COMMAND=_powerprompt
     case $TERM in
         *term | rxvt  )
@@ -54,14 +43,8 @@ function powerprompt()
             PS1="[\A - \$LOAD]\n[\u@\h \#] \W > " ;;
     esac
 }
-
 powerprompt     # This is the default prompt -- might be slow.
                 # If too slow, use fastprompt instead. ...
-                
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
@@ -77,3 +60,14 @@ alias lt='ls -ltr'         # sort by date, most recent last
 alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
+-#-------------------------------------------------------------
+-# The 'grep' family
+-#-------------------------------------------------------------
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+#-------------------------------------------------------------
+# Program list specific to the machine
+#-------------------------------------------------------------
+alias notepad='/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe'
+alias open=thunar

@@ -6,8 +6,7 @@
 ## ## ## ## ## ## ## ##
 # GLOBAL CONFIGURATION (across boxes) 
 # 
-echo "Global configuration loaded (~/.bashrc)"
-
+#echo "Global configuration loaded (~/.bashrc)"
 
 #-------------------------------------------------------------
 # Interactive Safety 
@@ -38,14 +37,6 @@ alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 alias .='echo $PWD'
 alias ..='cd ..'
 alias ...='cd ../..'
-#-------------------------------------------------------------
-# The 'grep' family
-#-------------------------------------------------------------
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-
 
 
 ## ## ## ## ## ## ## ##
@@ -59,11 +50,7 @@ elif [[ "$platform" == 'MINGW32_NT-6.1' ]]; then
 elif [[ "$platform" == 'Darwin' ]]; then
     file="$HOME/.bash/osx/.bashrc"
 fi
-echo $file
 if [[ -e $file ]] ; then 
 	source $file
-	echo "Custom configuration loaded ($file)"
-else
-	cat $file
-    echo "Custom configuration not found ($file)"
+	#echo "Custom configuration loaded ($file)"
 fi
