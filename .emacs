@@ -54,8 +54,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(require 'color-theme)
-(color-theme-initialize)
+:(require 'color-theme)
+:(color-theme-initialize)
 ;;(setq color-theme-is-global t)
 ;;(color-theme-comidia)
 ;;(color-theme-whateveryouwant)
@@ -68,16 +68,14 @@
 
 
 ;; Set the CWD current working diretory
-(setq default-directory "C:\\projects\\My Dropbox\\ice\\cadetnet-cmc4" )
+;(setq default-directory "C:\\projects\\My Dropbox\\ice\\cadetnet-cmc4" )
 
-
-
-;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(85 50))
-(add-to-list 'default-frame-alist '(alpha 85 50))
+:;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+:(set-frame-parameter (selected-frame) 'alpha '(85 50))
+:(add-to-list 'default-frame-alist '(alpha 85 50))
 ;; Set transparency of emacs
-(defun transparency (value)
- "Sets the transparency of the frame window. 0=transparent/100=opaque"
- (interactive "nTransparency Value 0 - 100 opaque:")
- (set-frame-parameter (selected-frame) 'alpha value))
+:(defun transparency (value)
+: "Sets the transparency of the frame window. 0=transparent/100=opaque"
+: (interactive "nTransparency Value 0 - 100 opaque:")
+: (set-frame-parameter (selected-frame) 'alpha value))
 
