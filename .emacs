@@ -41,11 +41,18 @@
 (add-to-list 'auto-mode-alist '("\\.ps1\\'" . powershell-mode))
 (add-to-list 'auto-mode-alist '("\\.psm1\\'" . powershell-mode))
 (autoload 'powershell-mode "powershell-mode" "Major mode for editing PowerShell code." t)
+;VBScript editing
+;;csharp
+(autoload 'visual-basic-mode "visual-basic-mode" "Major mode for editing visual basic." t)
+(autoload 'vbscript-mode "vbs-repl" "vbs-repl" t)
+(setq auto-mode-alist
+      (append '(("\\.\\(vbs\\|wsf\\)$" . vbscript-mode))
+              auto-mode-alist))
 
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
-;;(set-default-font "Consolas-11.5:bold")
+(set-default-font "Consolas-11.5")
 
 (setq c-default-style "bsd" c-basic-offset 4)
 (setq-default truncate-lines t) ;; Set long lines
@@ -57,7 +64,7 @@
 (require 'color-theme)
 (color-theme-initialize)
 ;;(setq color-theme-is-global t)
-;;(color-theme-comidia)
+(color-theme-comidia)
 ;;(color-theme-whateveryouwant)
 
 
@@ -68,16 +75,19 @@
 
 
 ;; Set the CWD current working diretory
-(setq default-directory "C:\\projects\\My Dropbox\\ice\\cadetnet-cmc4" )
+(setq default-directory "C:\\projects\\cadetnet\\cadetnet-cmc4" )
 
 
 
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(85 50))
-(add-to-list 'default-frame-alist '(alpha 85 50))
+;;(set-frame-parameter (selected-frame) 'alpha '(100 50))
+;;(add-to-list 'default-frame-alist '(alpha 100 50))
 ;; Set transparency of emacs
-(defun transparency (value)
- "Sets the transparency of the frame window. 0=transparent/100=opaque"
- (interactive "nTransparency Value 0 - 100 opaque:")
- (set-frame-parameter (selected-frame) 'alpha value))
+;;(defun transparency (value)
+;; "Sets the transparency of the frame window. 0=transparent/100=opaque"
+;; (interactive "nTransparency Value 0 - 100 opaque:")
+;; (set-frame-parameter (selected-frame) 'alpha value))
 
+;;(server-start)
+
+(and (= emacs-major-version 23) (defun server-ensure-safe-dir (dir) "Noop" t))
