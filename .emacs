@@ -75,10 +75,7 @@
 
 
 ;; Set the CWD current working diretory
-<<<<<<< HEAD
 (setq default-directory "C:\\projects\\cadetnet\\cadetnet-cmc4" )
-
-
 
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 50))
@@ -90,5 +87,9 @@
 ;; (set-frame-parameter (selected-frame) 'alpha value))
 
 ;;(server-start)
+;; remove the server start error message
+;(and (= emacs-major-version 23) (defun server-ensure-safe-dir (dir) "Noop" t))
 
-(and (= emacs-major-version 23) (defun server-ensure-safe-dir (dir) "Noop" t))
+
+;; Remove the *scratch* message
+(setq initial-scratch-message nil)
