@@ -20,7 +20,7 @@ alias mv='mv -i'
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
-alias ls='ls -hF --color'  # add colors for filetype recognition
+#alias ls='ls -hF --color'  # add colors for filetype recognition
 alias l='ls -AlXB'           # show hidden files
 alias la='ls -Al'          # show hidden files
 alias lx='ls -lXB'         # sort by extension
