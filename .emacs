@@ -61,8 +61,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(require 'color-theme)
-(color-theme-initialize)
+:(require 'color-theme)
+:(color-theme-initialize)
 ;;(setq color-theme-is-global t)
 (color-theme-comidia)
 ;;(color-theme-whateveryouwant)
@@ -75,6 +75,7 @@
 
 
 ;; Set the CWD current working diretory
+<<<<<<< HEAD
 (setq default-directory "C:\\projects\\cadetnet\\cadetnet-cmc4" )
 
 

@@ -8,11 +8,6 @@
 # 
 #echo "Global configuration loaded (~/.profile)"
 
-
-
-
-
-
 ## ## ## ## ## ## ## ##
 # SOURCE PLATFORM SPECIFIC 
 # Get the platform's .bashrc source
@@ -30,3 +25,5 @@ if [[ -e $file ]] ; then
     source $file
 #    echo "Custom configuration loaded ($file)"
 fi
+#PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]:[\033[33;1m\]\w\[\033[m\]\]]$ "
+PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]:[\033[33m\]\w\[\033[m\]\]]$ "
