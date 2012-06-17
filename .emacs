@@ -1,4 +1,4 @@
-; load paths
+﻿; load paths
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/themes/")
@@ -52,7 +52,7 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
-(set-default-font "Consolas-11.5")
+(set-default-font "Consolas-9")
 
 (setq c-default-style "bsd" c-basic-offset 4)
 (setq-default truncate-lines t) ;; Set long lines
@@ -75,7 +75,7 @@
 
 
 ;; Set the CWD current working diretory
-(setq default-directory "C:\\projects\\cadetnet\\cadetnet-cmc4" )
+(setq default-directory "C:\\projects" )
 
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 50))
@@ -94,11 +94,10 @@
 ;; Remove the *scratch* message
 (setq initial-scratch-message nil)
 
-;;https://github.com/awasira/emacs-evernote-mode/tree/master/doc
-(add-to-list 'load-path "C:\Users\sre\AppData\Local\Evernote\Evernote")
+(add-to-list 'load-path "C:\\Users\\sre\\AppData\\Local\\Evernote\\Evernote")
 (require 'evernote-mode)
 (setq evernote-username "simoneames") ; optional: you can use this username as default.
-(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
+;;(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
 (global-set-key "\C-cec" 'evernote-create-note)
 (global-set-key "\C-ceo" 'evernote-open-note)
 (global-set-key "\C-ces" 'evernote-search-notes)
