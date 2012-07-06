@@ -1,4 +1,4 @@
-; load paths
+ ; load paths
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/themes/")
