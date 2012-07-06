@@ -20,8 +20,8 @@
 (setq-default tab-width 4)
 
 ; auto-complete extension
-;(require 'auto-complete)
-;(global-auto-complete-mode t)
+(require 'auto-complete)
+(global-auto-complete-mode t)
 
 ;;Turn on documentation in elisp mode
 ;(add-hook 'emacs-lisp-mode-hook
@@ -41,11 +41,18 @@
 (add-to-list 'auto-mode-alist '("\\.ps1\\'" . powershell-mode))
 (add-to-list 'auto-mode-alist '("\\.psm1\\'" . powershell-mode))
 (autoload 'powershell-mode "powershell-mode" "Major mode for editing PowerShell code." t)
+;VBScript editing
+;;csharp
+(autoload 'visual-basic-mode "visual-basic-mode" "Major mode for editing visual basic." t)
+(autoload 'vbscript-mode "vbs-repl" "vbs-repl" t)
+(setq auto-mode-alist
+      (append '(("\\.\\(vbs\\|wsf\\)$" . vbscript-mode))
+              auto-mode-alist))
 
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
-;;(set-default-font "Consolas-11.5:bold")
+(set-default-font "Consolas-9")
 
 (setq c-default-style "bsd" c-basic-offset 4)
 (setq-default truncate-lines t) ;; Set long lines
@@ -54,10 +61,11 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(require 'color-theme)
-(color-theme-initialize)
+:(require 'color-theme)
+:(color-theme-initialize)
 ;;(setq color-theme-is-global t)
 ;;(color-theme-comidia)
+(color-theme-vim-colors)
 ;;(color-theme-whateveryouwant)
 
 
@@ -68,16 +76,34 @@
 
 
 ;; Set the CWD current working diretory
-(setq default-directory "C:\\projects\\My Dropbox\\ice\\cadetnet-cmc4" )
+(setq default-directory "C:\\projects" )
 
+;; Remove the *scratch* message
+(setq initial-scratch-message nil)
 
+(add-to-list 'load-path "C:\\Users\\sre\\AppData\\Local\\Evernote\\Evernote")
+(require 'evernote-mode)
+(setq evernote-username "simoneames") ; optional: you can use this username as default.
+;;(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
+(global-set-key "\C-cec" 'evernote-create-note)
+(global-set-key "\C-ceo" 'evernote-open-note)
+(global-set-key "\C-ces" 'evernote-search-notes)
+(global-set-key "\C-ceS" 'evernote-do-saved-search)
+(global-set-key "\C-cew" 'evernote-write-note)
+(global-set-key "\C-cep" 'evernote-post-region)
+(global-set-key "\C-ceb" 'evernote-browser)
 
-;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(85 50))
-(add-to-list 'default-frame-alist '(alpha 85 50))
-;; Set transparency of emacs
-(defun transparency (value)
- "Sets the transparency of the frame window. 0=transparent/100=opaque"
- (interactive "nTransparency Value 0 - 100 opaque:")
- (set-frame-parameter (selected-frame) 'alpha value))
+(defun copy-line ()
+      "Copy line"
+      (interactive)
+      (kill-ring-save (line-beginning-position 1)
+                      (line-end-position 1))
+      (beginning-of-line 2)
+      (yank)
+      (newline)
+      (previous-line)
+      (message "Line copied" ))
 
+   ;; optional key binding
+   (global-set-key "\C-c\C-c" 'copy-line)
+      (set-mark-command 1)
