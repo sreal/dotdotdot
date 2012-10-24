@@ -24,6 +24,7 @@
 (setq visible-bell t)               ; Turn off the bell
 
 
+(set-default-font "monofur-11")    ; Consolas all the way
 ;(set-default-font "Consolas-9")    ; Consolas all the way
 (subword-mode 1)                   ; CamelCase
 (global-subword-mode)
@@ -31,7 +32,6 @@
 (tool-bar-mode -1)                 ; No ToolBar
 (normal-erase-is-backspace-mode 1) ; make the backspace act as delete
 (delete-selection-mode 1)          ; Overwrite selection
-
 (add-hook 'before-save-hook 'whitespace-cleanup) ; nuke whitespaces when writing to a file
 
 
@@ -71,9 +71,45 @@
 ;;(color-theme-comidia)
 ;;(color-theme-whateveryouwant)
 
+
+;guru mode https://github.com/bbatsov/guru-mode
+(require 'guru-mode)
+(guru-global-mode +1)
+
 ; Evernote
 (require 'evernote-mode)
 (setq evernote-username "simoneames") ; optional: you can use this username as default.
+
+
+;;
+;; ace jump mode major function
+;;
+(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+;; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+
+;;
+;; enable a more powerful jump back function from ace jump mode
+;;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+;;If you use viper mode :
+;;(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
+;;If you use evil
+;;(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
 
 ; Custom Functions
 (defun copy-line ()
@@ -105,3 +141,13 @@
 (global-set-key "\C-c\C-c" 'copy-line)
 (global-set-key "\C-c\C-a" 'copy-buffer)
 (global-set-key "\C-c\C-v" 'overwrite-buffer)
+
+
+(defun ming-shell ()
+  "Run mingw32 in shell mode."
+  (interactive)
+  (let ((explicit-shell-file-name "C:/Program Files (x86)/Git/bin/sh")
+        (explicit-sh-args '("--login" "-i") ))
+    (call-interactively 'shell)))
+(setq tramp-shell-prompt-pattern "^[^\\$$][\\$$] *")
+(setq tramp-default-method "ssh")
