@@ -45,7 +45,7 @@ alias ...='cd ../..'
 platform=$(uname)
 if   [[ "$platform" == 'Linux' ]]; then
     file="$HOME/.bash/linux/.bashrc"
-elif [[ "$platform" == 'MINGW32_NT-6.1' ]]; then
+elif [[ "$platform" == 'MINGW32_NT-6.2' ]]; then
     file="$HOME/.bash/windows/.bashrc"
 elif [[ "$platform" == 'Darwin' ]]; then
     file="$HOME/.bash/osx/.bashrc"

@@ -86,6 +86,6 @@ function include_if_app_exists
 		echo "Application not founc ($app)"
 	fi 
 }
-include_if_app_exists vim 	./.vimrc 		$home
+include_if_app_exists vim 		./.vimrc 		$home
 include_if_app_exists emacs 	./.emacs 		$home
 include_if_app_exists conky 	./.conkyrc 		$home

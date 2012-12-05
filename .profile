@@ -15,7 +15,7 @@ platform=$(uname)
 
 if   [[ "$platform" == 'Linux' ]]; then
     file="$HOME/.bash/linux/.profile"
-elif [[ "$platform" == 'MIGW32_NT-6.1' ]]; then
+elif [[ "$platform" == 'MIGW32_NT-6.2' ]]; then
     file="$HOME/.bash/windows/.profile"
 elif [[ "$platform" == 'Darwin' ]]; then
     file="$HOME/.bash/osx/.profile"
@@ -25,5 +25,3 @@ if [[ -e $file ]] ; then
     source $file
 #    echo "Custom configuration loaded ($file)"
 fi
-#PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]:[\033[33;1m\]\w\[\033[m\]\]]$ "
-PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]:[\033[33m\]\w\[\033[m\]\]]$ "
