@@ -1,15 +1,15 @@
 #!/bin/bash
 #
-# Load the global .bashrc 
+# Load the global .bashrc
 # Then the specific platform
 
 ## ## ## ## ## ## ## ##
-# GLOBAL CONFIGURATION (across boxes) 
-# 
+# GLOBAL CONFIGURATION (across boxes)
+#
 #echo "Global configuration loaded (~/.bashrc)"
 
 #-------------------------------------------------------------
-# Interactive Safety 
+# Interactive Safety
 #-------------------------------------------------------------
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -40,17 +40,19 @@ alias ...='cd ../..'
 
 
 ## ## ## ## ## ## ## ##
-# SOURCE PLATFORM SPECIFIC 
+# SOURCE PLATFORM SPECIFIC
 # Get the platform's .bashrc source
 platform=$(uname)
 if   [[ "$platform" == 'Linux' ]]; then
     file="$HOME/.bash/linux/.bashrc"
+elif [[ "$platform" == 'MINGW32_NT-6.1' ]]; then
+    file="$HOME/.bash/windows/.bashrc"
 elif [[ "$platform" == 'MINGW32_NT-6.2' ]]; then
     file="$HOME/.bash/windows/.bashrc"
 elif [[ "$platform" == 'Darwin' ]]; then
     file="$HOME/.bash/osx/.bashrc"
 fi
-if [[ -e $file ]] ; then 
-	source $file
-	#echo "Custom configuration loaded ($file)"
+if [[ -e $file ]] ; then
+    source $file
+    #echo "Custom configuration loaded ($file)"
 fi

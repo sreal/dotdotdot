@@ -4,17 +4,19 @@
 # Then the specific platform
 
 ## ## ## ## ## ## ## ##
-# GLOBAL CONFIGURATION (across boxes) 
-# 
+# GLOBAL CONFIGURATION (across boxes)
+#
 #echo "Global configuration loaded (~/.profile)"
 
 ## ## ## ## ## ## ## ##
-# SOURCE PLATFORM SPECIFIC 
+# SOURCE PLATFORM SPECIFIC
 # Get the platform's .bashrc source
 platform=$(uname)
 
 if   [[ "$platform" == 'Linux' ]]; then
     file="$HOME/.bash/linux/.profile"
+elif [[ "$platform" == 'MIGW32_NT-6.1' ]]; then
+    file="$HOME/.bash/windows/.profile"
 elif [[ "$platform" == 'MIGW32_NT-6.2' ]]; then
     file="$HOME/.bash/windows/.profile"
 elif [[ "$platform" == 'Darwin' ]]; then
