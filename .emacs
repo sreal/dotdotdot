@@ -2,31 +2,29 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/themes/")
-(add-to-list 'load-path "~/Evernote/Evernote") ; Path to evernote datebase
+(add-to-list 'load-path "~/Evernote/Evernote")
 
 (setq inhibit-startup-message   t)   ; Don't want any startup message
-(setq inhibit-splash-screen     t)
+(setq inhibit-splash-screen     t)   ; Or Start screen
 (setq make-backup-files         nil) ; Don't want any backup files
 (setq auto-save-list-file-name  nil) ; Don't want any .saves files
-
-(setq vc-follow-symlinks        t);
+(setq vc-follow-symlinks        t)  ;
 (setq search-highlight           t) ; Highlight search object
 (setq query-replace-highlight    t) ; Highlight query object
 (setq mouse-sel-retain-highlight t) ; Keep mouse high-lightening
-
-(setq c-default-style "bsd" c-basic-offset 4)
+(setq c-default-style "bsd" c-basic-offset 4) ; bsd style
 (setq-default truncate-lines t)     ; Set long lines
-(setq default-directory "C:\\projects" )
+(setq default-directory "C:\\projects" ) ; default to project directory
 (setq initial-scratch-message nil)  ; Clear scratch message
-                                    ; pyhton setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil) ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
+(setq-default tab-width 4)          ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
+
+(setq line-number-mode t)               ; Line number
+(setq column-number-mode t)            ; Column number
 (setq visible-bell t)               ; Turn off the bell
-
-
-(set-default-font "monofur-11")    ; Consolas all the way
+(set-default-font "monofur-13")     ; monofur custom font
 ;(set-default-font "Consolas-9")    ; Consolas all the way
-(subword-mode 1)                   ; CamelCase
+(subword-mode 1)                    ; CamelCase
 (global-subword-mode)
 (menu-bar-mode -1)                 ; No Menu
 (tool-bar-mode -1)                 ; No ToolBar
@@ -34,8 +32,16 @@
 (delete-selection-mode 1)          ; Overwrite selection
 (add-hook 'before-save-hook 'whitespace-cleanup) ; nuke whitespaces when writing to a file
 
+;; Color Theme
+:(require 'color-theme)
+:(color-theme-initialize)
+(setq color-theme-is-global t)
+(color-theme-dark-laptop)        ; color-theme-dark-laptop
+;;(color-theme-vim-colors)       ; or vim
 
-;;csharp
+
+; Languages
+;; csharp
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq csharp-mode-hook
     (function (lambda ()
@@ -46,7 +52,7 @@
 (add-to-list 'auto-mode-alist '("\\.ps1\\'" . powershell-mode))
 (add-to-list 'auto-mode-alist '("\\.psm1\\'" . powershell-mode))
 (autoload 'powershell-mode "powershell-mode" "Major mode for editing PowerShell code." t)
-;VBScript editing
+; vbscript
 (autoload 'visual-basic-mode "visual-basic-mode" "Major mode for editing visual basic." t)
 (autoload 'vbscript-mode "vbs-repl" "vbs-repl" t)
 (setq auto-mode-alist
@@ -55,7 +61,7 @@
 
 ; auto-complete extension
 ;(require 'auto-complete)
-;(global-auto-complete-mode t)
+;(global-auto-complete-mode t) ; enable for auto complete
 
 ; Interactively Do Things
 (require 'ido)
@@ -63,52 +69,32 @@
 (setq ido-enable-flex-matching t) ; case insensitive matching
 (add-to-list 'ido-ignore-files "\\.DS_Store")
 
-; Color Theme
-:(require 'color-theme)
-:(color-theme-initialize)
-(setq color-theme-is-global t)
-(color-theme-vim-colors)
-;;(color-theme-comidia)
-;;(color-theme-whateveryouwant)
 
-
-;guru mode https://github.com/bbatsov/guru-mode
-(require 'guru-mode)
-(guru-global-mode +1)
+;guru mode
+;; (require 'guru-mode)
+;; (guru-global-mode +1) ; enable to bring the pain https://github.com/bbatsov/guru-mode
 
 ; Evernote
 (require 'evernote-mode)
-(setq evernote-username "simoneames") ; optional: you can use this username as default.
+(setq evernote-username "simoneames") ; default to me.
 
 
-;;
-;; ace jump mode major function
-;;
-(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
+; ace jump mode major function
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
-;; you can select the key you prefer to
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-
-;;
-;; enable a more powerful jump back function from ace jump mode
-;;
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
-;;If you use viper mode :
-;;(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
-;;If you use evil
-;;(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
+; enable a more powerful jump back function from ace jump mode
+;;(autoload
+;;  'ace-jump-mode-pop-mark
+;;  "ace-jump-mode"
+;;  "Ace jump back:-)"
+;;  t)
+;;(eval-after-load "ace-jump-mode"
+;;  '(ace-jump-mode-enable-mark-sync))
+;;(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 
 ; Custom Functions
