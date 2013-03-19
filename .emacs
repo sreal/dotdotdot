@@ -87,8 +87,14 @@
   "vbs-repl" t)                                  ;
 (setq auto-mode-alist                            ;
       (append '(("\\.\\(vbs\\|wsf\\)$" .         ;
-                 vbscriptmode))
-              auto-mode-alist))
+                 vbscriptmode))                  ;
+              auto-mode-alist))                  ;
+(autoload                                        ; ; markdown-mode-mode
+  'markdown-mode                                 ;
+  "markdown-mode"                                ;
+  "Major mode for editing Markdown" t)           ;
+(add-to-list 'auto-mode-alist '("\\.md\\'" .     ;
+                                markdown-mode))  ;
 
 ; ace jump mode major function
 (autoload

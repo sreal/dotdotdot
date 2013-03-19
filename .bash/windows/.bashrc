@@ -5,6 +5,7 @@
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
+alias ls='ls -ah --color=auto'  # add colors for filetype recognition
 alias ll="ls -l"
 #-------------------------------------------------------------
 # Override Shell Prompt (no uptime)
