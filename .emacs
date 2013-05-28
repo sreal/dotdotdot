@@ -3,10 +3,17 @@
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/themes/")
 (add-to-list 'load-path "~/Evernote/Evernote")
+(add-to-list 'load-path "~/.emacs.d/Extensions/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/Extensions/yasnippet")
+
 
 (require 'color-theme)
 (require 'ido)
 (require 'evernote-mode)
+(require 'auto-complete-config)
+(require 'yasnippet)
+(require 'angular-snippets)
+
 
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
@@ -112,6 +119,16 @@
 ;;(eval-after-load "ace-jump-mode"
 ;;  '(ace-jump-mode-enable-mark-sync))
 ;;(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+
+;; autocomplete
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/Extensions/auto-complete/dict")
+(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
+(global-auto-complete-mode t)                    ; use auto complete dictionary by default
+(setq ac-auto-start 2)                           ; autocomplete after 2 chars
+(setq ac-ignore-case nil)                        ; case sensitive auto complete
+
+(yas-global-mode 1)                              ; yassnippet
 
 
 ; Custom Functions
