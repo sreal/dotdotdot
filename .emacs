@@ -6,14 +6,12 @@
 (add-to-list 'load-path "~/.emacs.d/Extensions/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/Extensions/yasnippet")
 
-
 (require 'color-theme)
 (require 'ido)
 (require 'evernote-mode)
-(require 'auto-complete-config)
 (require 'yasnippet)
 (require 'angular-snippets)
-
+(require 'auto-complete-config)
 
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
@@ -34,7 +32,8 @@
 (setq mouse-sel-retain-highlight t)              ; Keep mouse high-lightening
 (setq c-default-style "bsd" c-basic-offset 4)    ; bsd style
 (setq-default truncate-lines     t)              ; Set long lines
-(setq default-directory "C:\\projects" )         ; default to project directory
+(setq default-directory                          ;
+  "/Users/simoneames/Projects/projects-current" ); default to project directory
 (setq initial-scratch-message    nil)            ; Clear scratch message
 (setq-default indent-tabs-mode   nil)            ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
 (setq-default tab-width          4)              ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
@@ -128,8 +127,12 @@
 (setq ac-auto-start 2)                           ; autocomplete after 2 chars
 (setq ac-ignore-case nil)                        ; case sensitive auto complete
 
-(yas-global-mode 1)                              ; yassnippet
-
+;(setq yas-snippet-dirs
+;      '("~/.emacs.d/snippets"                     ; personal snippets
+;        "~/.emacs.d/Extensions/snippets"          ; extension snippets
+;        "~/.emacs.d/Extensions/yasnippet/snippets"; base snippets
+;        ))
+(yas/global-mode 1)                              ; make snippets avaliable globally
 
 ; Custom Functions
 (defun copy-line ()
