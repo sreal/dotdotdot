@@ -1,10 +1,13 @@
- ; load paths
+; load paths
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/themes/")
 (add-to-list 'load-path "~/Evernote/Evernote")
 (add-to-list 'load-path "~/.emacs.d/Extensions/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/Extensions/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/Extensions/lintnode")
+
+(add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/2.7/bin/")
 
 (require 'color-theme)
 (require 'ido)
@@ -12,6 +15,9 @@
 (require 'yasnippet)
 (require 'angular-snippets)
 (require 'auto-complete-config)
+(require 'flymake-jslint)
+(require 'flymake-cursor)
+
 
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
@@ -127,12 +133,37 @@
 (setq ac-auto-start 2)                           ; autocomplete after 2 chars
 (setq ac-ignore-case nil)                        ; case sensitive auto complete
 
-;(setq yas-snippet-dirs
-;      '("~/.emacs.d/snippets"                     ; personal snippets
-;        "~/.emacs.d/Extensions/snippets"          ; extension snippets
-;        "~/.emacs.d/Extensions/yasnippet/snippets"; base snippets
-;        ))
+
+;; yas snippets
+(setq yas-snippet-dirs
+      '("~/.emacs.d/Extensions/snippets"          ; extension snippets
+        "~/.emacs.d/Extensions/yasnippet/snippets"; base snippets
+        ))
 (yas/global-mode 1)                              ; make snippets avaliable globally
+
+
+;; lintnode
+(add-hook 'js-mode-hook
+  (lambda ()
+    (flymake-mode t)))
+
+
+;; pyflakes and pep8
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "pyflakes" (list local-file))
+    (list "pep8" (list local-file))    ))
+
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
+
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+
 
 ; Custom Functions
 (defun copy-line ()
