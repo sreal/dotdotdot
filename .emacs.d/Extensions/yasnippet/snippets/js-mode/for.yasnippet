@@ -1,9 +1,8 @@
-# -*- mode: snippet -*-
+# -*- coding: utf-8 -*-
 # name: for
 # key: for
+# contributor: David Miller <david@deadpansincerity.com>
 # --
-var ${1:i} = ${2:-1}, len = $3.length;
-
-for(; ++$1 < len;){
-  $4
+for( var i=0; i < ${1:something}.${2:length}; i++){
+    $0
 }

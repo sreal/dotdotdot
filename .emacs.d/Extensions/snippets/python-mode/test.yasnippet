@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# contributor: simon eames
+# --
+def test_${1:stateUnderTest}_${2:expectedBehaviour}(self):
+    actual = $0
+    self.assert${3:Equals}(${4:expected}, actual)
