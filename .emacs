@@ -9,9 +9,11 @@
 
 
 ; exec paths for shel
-(add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/2.7/bin/")
+(add-to-list 'exec-path "C:\\python273")
+(add-to-list 'exec-path "C:\\python273\\Scripts")
+;; (add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/2.7/bin/")
 
-; infor path for documentation
+; info path for documentation
 (add-to-list 'Info-default-directory-list "~/.emacs.d/Extensions/info")
 
 (require 'color-theme)
@@ -19,7 +21,7 @@
 (require 'yasnippet)
 (require 'angular-snippets)
 (require 'auto-complete-config)
-(require 'flymake-jslint)
+;; (require 'flymake-jslint)
 (require 'flymake-cursor)
 (require 'python-mode)
 
@@ -40,10 +42,10 @@
 (setq mouse-sel-retain-highlight t)              ; Keep mouse high-lightening
 (setq c-default-style "bsd" c-basic-offset 4)    ; bsd style
 (setq-default truncate-lines     t)              ; Set long lines
+;; (setq default-directory                       ;
+;; "/Users/simoneames/Projects/projects-current"); mac default to project directory
 (setq default-directory                          ;
-  "/Users/simoneames/Projects/projects-current" ); mac default to project directory
-;;(setq default-directory                          ;
-;;  "C://Projects//" ); windows default to project directory
+  "C:\\projects" )                               ; windows default to project directory
 (setq initial-scratch-message    nil)            ; Clear scratch message
 (setq-default indent-tabs-mode   nil)            ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
 (setq-default tab-width          4)              ; python setup (tab vs spaces) - http://www.python.org/dev/peps/pep-0008/
@@ -146,7 +148,7 @@
             (lintnode-hook)))                     ;
 ;; (add-hook 'js-mode-hook                        ; explicit running
 ;;   (lambda ()                                   ;
-    ;; (flymake-mode t)))                         ;
+;;     (flymake-mode t)))                         ;
 
 
 ;; Flakes
