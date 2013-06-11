@@ -2,12 +2,12 @@
 #
 # Custom configuration for linux boxes
 
-# All taken from 
+# All taken from
 #http://tldp.org/LDP/abs/html/sample-bashrc.html
 #-------------------------------------------------------------
 # Shell Prompt
 #-------------------------------------------------------------
-if [[ "${DISPLAY%%:0*}" != "" ]]; then  
+if [[ "${DISPLAY%%:0*}" != "" ]]; then
     HILIT=${red}   # remote machine: prompt will be partly red
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
@@ -69,5 +69,14 @@ alias egrep='egrep --color=auto'
 #-------------------------------------------------------------
 # Program list specific to the machine
 #-------------------------------------------------------------
-alias notepad='/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe'
-alias open=thunar
+#alias notepad='/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe'
+alias open=nautilus
+export EDITOR=emacs
+
+#-------------------------------------------------------------
+# Set the primary monitor of more than one found.
+#-------------------------------------------------------------
+NR_OF_MONITORS=$(xrandr -d :0 -q | grep ' connected' | wc -l)
+if [ $NR_OF_MONITORS = "3" ]; then
+  xrandr --output DVI-0 --primary
+fi
