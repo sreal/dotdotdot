@@ -1,3 +1,4 @@
+
 ; load paths
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
@@ -65,7 +66,7 @@
 (setq column-number-mode         t)               ; Column number
 (setq visible-bell               t)               ; Turn off the bell
 
-;(set-default-font "monofur-13")                   ; monofur custom font
+(set-default-font "monofur-13")                   ; monofur custom font
 ;(set-default-font "Consolas-9")                  ; Consolas alternate
 (subword-mode                    1)               ; CamelCase
 (global-subword-mode)                             ; subword mode for everyone
@@ -76,8 +77,8 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)  ; nuke whitespaces when writing to a file
 
 
-(setq fci-always-use-textual-rule t)
-(setq fci-rule-width 2)
+(setq-default fill-column 80)                     ; ; fci-mode columns to 80 width
+(setq fci-always-use-textual-rule t)              ;
 
 
 :(color-theme-initialize)                         ; ; Color Themes
