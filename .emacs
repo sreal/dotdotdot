@@ -66,7 +66,7 @@
 (setq column-number-mode         t)               ; Column number
 (setq visible-bell               t)               ; Turn off the bell
 
-(set-default-font "monofur-13")                   ; monofur custom font
+(set-default-font "monofur-19")                   ; monofur custom font, big
 ;(set-default-font "Consolas-9")                  ; Consolas alternate
 (subword-mode                    1)               ; CamelCase
 (global-subword-mode)                             ; subword mode for everyone
