@@ -1,4 +1,3 @@
-
 ; load paths
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/Extensions/")
@@ -8,11 +7,21 @@
 (add-to-list 'load-path "~/.emacs.d/Extensions/lintnode")
 (add-to-list 'load-path "~/.emacs.d/Extensions/python-mode")
 
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+(pymacs-load "ropemacs" "rope-")
+(eval-after-load "pymacs"
+  '(add-to-list 'pymacs-load-path "~/.emacs.d/Extensions/Pymacs"))
 
 ; exec paths for shell
 ;;(add-to-list 'exec-path "C:\\python273")
 ;;(add-to-list 'exec-path "C:\\python273\\Scripts")
-;;(add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/2.7/bin/")
+(add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/2.7/bin/")
+(add-to-list 'exec-path "/usr/local/bin/")
 
 ; info path for documentation
 (add-to-list 'Info-default-directory-list "~/.emacs.d/Extensions/info")
@@ -26,6 +35,7 @@
 (require 'flymake-cursor)
 (require 'python-mode)
 (require 'fill-column-indicator)
+(require 'sr-speedbar)
 
 ;; Bindings
 (global-set-key "\C-w" 'backward-kill-word)
@@ -44,12 +54,12 @@
 (setq mouse-sel-retain-highlight t)               ; Keep mouse high-lightening
 (setq c-default-style "bsd")                      ; bsd style
 (setq-default truncate-lines     t)               ; Set long lines
-;; (setq default-directory                          ;
-;; "/Users/simoneames/Projects/projects-current")   ; mac default to project directory
+ (setq default-directory                          ;
+ "/Users/simoneames/Projects/projects-current")   ; mac default to project directory
 ;; (setq default-directory                          ;
 ;;   'c:\\PROJECTS\\' )                             ; windows default to project directory
-(setq default-directory                           ;
-  "/home/sre/projects" )                          ; linux default to project directory
+;;(setq default-directory                           ;
+;;  "/home/sre/projects" )                          ; linux default to project directory
 (setq initial-scratch-message    nil)             ; Clear scratch message
 
 
@@ -76,6 +86,13 @@
 (delete-selection-mode           1)               ; Overwrite selection
 (add-hook 'before-save-hook 'whitespace-cleanup)  ; nuke whitespaces when writing to a file
 
+
+(when window-system                               ; ; Speedbar
+      (speedbar t))                               ;
+(make-face 'speedbar-face)                        ;
+(set-face-font 'speedbar-face "Inconsolata-12")   ;
+(setq speedbar-mode-hook '(lambda ()              ;
+  (buffer-face-set 'speedbar-face)))              ;
 
 (setq-default fill-column 80)                     ; ; fci-mode columns to 80 width
 (setq fci-always-use-textual-rule t)              ;
