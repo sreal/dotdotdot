@@ -2,12 +2,12 @@
 #
 # Custom configuration for linux boxes
 
-# All taken from 
+# All taken from
 #http://tldp.org/LDP/abs/html/sample-bashrc.html
 #-------------------------------------------------------------
 # Shell Prompt
 #-------------------------------------------------------------
-if [[ "${DISPLAY%%:0*}" != "" ]]; then  
+if [[ "${DISPLAY%%:0*}" != "" ]]; then
     HILIT=${red}   # remote machine: prompt will be partly red
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
@@ -67,4 +67,3 @@ alias rgrep='grep -rvi --color=auto'
 #-------------------------------------------------------------
 # Program list specific to the machine
 #-------------------------------------------------------------
-
