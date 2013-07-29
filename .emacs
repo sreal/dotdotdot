@@ -176,6 +176,25 @@
 (add-hook 'js-mode-hook                           ;
   (lambda ()                                      ;
   (lintnode-hook)))                               ;
+
+(defun flymake-xml-init ()                        ; fix broken flymake xml init
+  (list "xmllint"                                 ;
+    (list "--valid"                               ;
+      (flymake-init-create-temp-buffer-           ;
+       'flymake-create-temp-inplace))))           ;
+(defun flymake-html-init ()
+  (let* ((temp-file
+    (flymake-init-create-temp-buffer-copy
+      'flymake-create-temp-inplace))
+    (local-file
+      (file-relative-name temp-file
+        (file-name-directory buffer-file-name))))
+      (list "tidy" (list local-file))))
+(add-to-list
+  'flymake-allowed-file-name-masks
+    '("\\.html$" flymake-html-init))
+
+
 ;; (add-hook 'js-mode-hook                        ; explicit running
 ;;   (lambda ()                                   ;
 ;;     (flymake-mode t)))                         ;
