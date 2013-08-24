@@ -11,9 +11,6 @@ PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 
 # MacPorts Installer addition on 2010-09-14_at_18:16:29: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
 # Finished adapting your PATH environment variable for use with MacPorts.
-
 export PYTHONPATH=/Library/Frameworks/Python.framework/Versions/2.7/lib/python.2.7/site-packages
-
-
-PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]:[\033[33;1m\]\w\[\033[m\]\]]$ "
