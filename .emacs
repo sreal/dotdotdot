@@ -1,4 +1,4 @@
-;;============================================================================;;
+;============================================================================;;
 ; System Specific                                                              ;
 (if (string= system-type "darwin")                                             ;
   (progn
@@ -70,6 +70,7 @@
 ; Requires                                                                     ;
 (require 'ido)                                                                 ;
 (require 'yasnippet)                                                           ;
+(require 'rainbow-delimiters)                                                  ;
 
 
 ;;============================================================================;;
@@ -90,7 +91,8 @@
   '("~/.emacs.d/Extensions/snippets"              ;                            ;
     "~/.emacs.d/Extensions/yasnippet/snippets"))  ;                            ;
 (yas/global-mode 1)                               ; make snippets avaliable globally
-
+                                                                               ;
+(global-rainbow-delimiters-mode)                  ; ; rainbow mode             ;
 
 ;;------------------------------------------------------------------------------;;
 ;; Graphical Only
@@ -117,8 +119,9 @@
   ;;============================================================================;;
   ;; Graphic Bindings                                                            ;
   (normal-erase-is-backspace-mode  1)               ; make the backspace act as delete
-  (set-default-font "monofur-19")                   ; monofur custom font, big   ;
+  ;(set-default-font "monofur-19")                  ; monofur custom font, big   ;
   ;(set-default-font "Consolas-9")                  ; Consolas alternate         ;
+  (set-default-font "Inconsolata-17")               ; Inconsolas alternate       ;
 
 
   ;;============================================================================;;
