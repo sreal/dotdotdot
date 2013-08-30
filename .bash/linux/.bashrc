@@ -12,39 +12,7 @@ if [[ "${DISPLAY%%:0*}" != "" ]]; then
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
 fi
-#  --> Replace instances of \W with \w in prompt functions below
-#+ --> to get display of full path name.
-function fastprompt()
-{
-    unset PROMPT_COMMAND
-    case $TERM in
-        *term | rxvt )
-            PS1="${HILIT}[\h]$NC \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
-        linux )
-            PS1="${HILIT}[\h]$NC \W > " ;;
-        *)
-            PS1="[\h] \W > " ;;
-    esac
-}
-_powerprompt()
-{
-    LOAD=$(uptime|sed -e "s/.*: \([^,]*\).*/\1/" -e "s/ //g")
-}
-function powerprompt()
-{
-    PROMPT_COMMAND=_powerprompt
-    case $TERM in
-        *term | rxvt  )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > \
-                 \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
-        linux )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > " ;;
-        * )
-            PS1="[\A - \$LOAD]\n[\u@\h \#] \W > " ;;
-    esac
-}
-powerprompt     # This is the default prompt -- might be slow.
-                # If too slow, use fastprompt instead. ...
+PS1='  \n\r  \#: \[\033[31m\]\u\[\033[1;32m\]:\[\033[34m\] \w\[\033[m\]\[\033[33m\] \e[0;33m[\T]\e[m $(__git_ps1)\n\r  > \[\033[37m\]'
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
@@ -66,6 +34,7 @@ alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias rgrep='grep -rin --color=auto'
 #-------------------------------------------------------------
 # Program list specific to the machine
 #-------------------------------------------------------------

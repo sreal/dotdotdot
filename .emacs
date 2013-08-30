@@ -71,6 +71,8 @@
 (require 'ido)                                                                 ;
 (require 'yasnippet)                                                           ;
 (require 'rainbow-delimiters)                                                  ;
+(require 'color-theme)                                                         ;
+(require 'flymake-cursor)                                                      ;
 
 
 ;;============================================================================;;
@@ -93,6 +95,46 @@
 (yas/global-mode 1)                               ; make snippets avaliable globally
                                                                                ;
 (global-rainbow-delimiters-mode)                  ; ; rainbow mode             ;
+                                                                               ;
+(when (load "flymake" t)                          ; ; flymake                  ;
+  (defun flymake-pyflakes-init ()                 ;                            ;
+  (let* (                                         ;                            ;
+    (temp-file                                    ;                            ;
+     (flymake-init-create-temp-buffer-copy        ;                            ;
+        'flymake-create-temp-inplace))            ;                            ;
+    (local-file                                   ;                            ;
+      (file-relative-name                         ;                            ;
+       temp-file                                  ;                            ;
+       (file-name-directory buffer-file-name))))  ;                            ;
+    (list "pyflakes" (list local-file))           ; include pyflakes           ;
+    (list "pep8" (list local-file))    ))         ; include pep8               ;
+  (add-to-list                                    ;                            ;
+    'flymake-allowed-file-name-masks              ;                            ;
+    '("\\.py\\'" flymake-pyflakes-init)))         ; run for .py scripts        ;
+(add-hook 'find-file-hook                         ; hook it up                 ;
+  'flymake-find-file-hook)                        ;                            ;
+(defun flymake-xml-init ()                        ; fix broken flymake xml init;
+  (list "xmllint"                                 ;                            ;
+    (list "--valid"                               ;                            ;
+      (flymake-init-create-temp-buffer-           ;                            ;
+       'flymake-create-temp-inplace))))           ;                            ;
+(defun flymake-html-init ()                       ;                            ;
+  (let* ((temp-file                               ;                            ;
+    (flymake-init-create-temp-buffer-copy         ;                            ;
+      'flymake-create-temp-inplace))              ;                            ;
+    (local-file                                   ;                            ;
+      (file-relative-name temp-file               ;                            ;
+        (file-name-directory buffer-file-name)))) ;                            ;
+      (list "tidy" (list local-file))))           ;                            ;
+(add-to-list                                      ;                            ;
+  'flymake-allowed-file-name-masks                ;                            ;
+    '("\\.html$" flymake-html-init))              ;                            ;
+                                                                               ;
+:(color-theme-initialize)                         ; ; color themes             ;
+;;(setq color-theme-is-global      t)             ; make theme global          ;
+;;(color-theme-dark-laptop)                       ; use dark laptop            ;
+;;(color-theme-vim-colors)                        ; or vim                     ;
+
 
 ;;------------------------------------------------------------------------------;;
 ;; Graphical Only
@@ -108,9 +150,7 @@
 
   ;;============================================================================;;
   ; Requires                                                                     ;
-  (require 'color-theme)                                                         ;
-  (require 'flymake-cursor)                                                      ;
-  (require 'python-mode)                                                         ;
+  (require 'python-mode) ;; IS THIS NEEDED???                                    ;
   (require 'fill-column-indicator)                                               ;
   ;;(require 'auto-complete-config)                                              ;
   ;; (require 'flymake-jslint)                                                   ;
@@ -131,11 +171,6 @@
   (add-hook 'js-mode-hook 'fci-mode)                ;                            ;
   (add-hook 'python-mode-hook 'fci-mode)            ;                            ;
                                                                                  ;
-  :(color-theme-initialize)                         ; ; color themes             ;
-  (setq color-theme-is-global      t)               ; make theme global          ;
-  (color-theme-dark-laptop)                         ; use dark laptop            ;
-  ;;(color-theme-vim-colors)                        ; or vim                     ;
-                                                                                 ;
   (setq lintnode-jslint-excludes (list              ; ; lintnode                 ;
     'nomen 'undef 'plusplus 'onevar 'white))        ;                            ;
   (add-hook 'js-mode-hook                           ;                            ;
@@ -145,40 +180,6 @@
   ;;   (lambda ()                                   ;                            ;
   ;;     (flymake-mode t)))                         ;                            ;
                                                                                  ;
-  (when (load "flymake" t)                          ; ; flymake                  ;
-    (defun flymake-pyflakes-init ()                 ;                            ;
-    (let* (                                         ;                            ;
-      (temp-file                                    ;                            ;
-       (flymake-init-create-temp-buffer-copy        ;                            ;
-          'flymake-create-temp-inplace))            ;                            ;
-      (local-file                                   ;                            ;
-        (file-relative-name                         ;                            ;
-         temp-file                                  ;                            ;
-         (file-name-directory buffer-file-name))))  ;                            ;
-      (list "pyflakes" (list local-file))           ; include pyflakes           ;
-      (list "pep8" (list local-file))    ))         ; include pep8               ;
-    (add-to-list                                    ;                            ;
-      'flymake-allowed-file-name-masks              ;                            ;
-      '("\\.py\\'" flymake-pyflakes-init)))         ; run for .py scripts        ;
-  (add-hook 'find-file-hook                         ; hook it up                 ;
-    'flymake-find-file-hook)                        ;                            ;
-  (defun flymake-xml-init ()                        ; fix broken flymake xml init;
-    (list "xmllint"                                 ;                            ;
-      (list "--valid"                               ;                            ;
-        (flymake-init-create-temp-buffer-           ;                            ;
-         'flymake-create-temp-inplace))))           ;                            ;
-  (defun flymake-html-init ()                       ;                            ;
-    (let* ((temp-file                               ;                            ;
-      (flymake-init-create-temp-buffer-copy         ;                            ;
-        'flymake-create-temp-inplace))              ;                            ;
-      (local-file                                   ;                            ;
-        (file-relative-name temp-file               ;                            ;
-          (file-name-directory buffer-file-name)))) ;                            ;
-        (list "tidy" (list local-file))))           ;                            ;
-  (add-to-list                                      ;                            ;
-    'flymake-allowed-file-name-masks                ;                            ;
-      '("\\.html$" flymake-html-init))              ;                            ;
-
 
   ;;============================================================================;;
   ; Language Modes                                                               ;
